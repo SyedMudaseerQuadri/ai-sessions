@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free AI Sessions</title>
+  <meta name="description" content="Free 1-to-1 sessions on using AI tools. Two seats a month, first come first served.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <p class="demo-strip" id="demo-strip" hidden>
+      Demo mode: bookings are saved only in this browser. Connect the Google Sheet (see README) before you share the link.
+    </p>
+
+    <header class="intro">
+      <p class="eyebrow">Free &middot; 1-to-1 &middot; 2 seats a month</p>
+      <h1>Learn to use AI, for free</h1>
+      <p class="lede">
+        I teach people how to get real work done with free AI tools. Each session is one person and me,
+        first come first served, and I only take two people a month.
+      </p>
+      <dl class="facts">
+        <div><dt>Length</dt><dd>60 minutes</dd></div>
+        <div><dt>Time</dt><dd>7:00 PM IST</dd></div>
+        <div><dt>Where</dt><dd>Online, Google Meet</dd></div>
+        <div><dt>Cost</dt><dd>Free</dd></div>
+      </dl>
+    </header>
+
+    <main class="layout">
+      <section class="booking" aria-labelledby="booking-title">
+        <h2 id="booking-title" class="visually-hidden">Book a session</h2>
+
+        <!-- Step 1: pick a date -->
+        <div class="step" id="step-pick">
+          <div class="cal-head">
+            <button class="nav" id="prev" type="button" disabled aria-label="Previous month">&larr;</button>
+            <div class="cal-title">
+              <p class="month" id="month-label" aria-live="polite">&nbsp;</p>
+              <p class="seats" id="seats-label">
+                <span class="seat-dots" id="seat-dots" aria-hidden="true"></span>
+                <span id="seats-text">Checking free dates&hellip;</span>
+              </p>
+            </div>
+            <button class="nav" id="next" type="button" disabled aria-label="Next month">&rarr;</button>
+          </div>
+
+          <div class="cal" role="grid" aria-labelledby="month-label">
+            <div class="dow" role="row">
+              <span role="columnheader">Mon</span><span role="columnheader">Tue</span><span role="columnheader">Wed</span>
+              <span role="columnheader">Thu</span><span role="columnheader">Fri</span><span role="columnheader">Sat</span>
+              <span role="columnheader">Sun</span>
+            </div>
+            <div class="days" id="days"></div>
+          </div>
+
+          <p class="legend">
+            <span><i class="key key-free"></i>Free</span>
+            <span><i class="key key-taken"></i>Taken</span>
+            <span><i class="key key-off"></i>Not open</span>
+          </p>
+          <p class="status" id="pick-status" role="status"></p>
+        </div>
+
+        <!-- Step 2: confirm the date -->
+        <div class="step" id="step-confirm" hidden>
+          <p class="step-label">Confirm your date</p>
+          <p class="chosen" id="confirm-date"></p>
+          <p class="chosen-sub">7:00 PM IST &middot; 60 minutes &middot; Google Meet</p>
+          <div class="actions">
+            <button class="btn btn-primary" id="confirm-yes" type="button">Yes, this date works</button>
+            <button class="btn btn-quiet" id="confirm-back" type="button">Pick another date</button>
+          </div>
+        </div>
+
+        <!-- Step 3: name + email -->
+        <form class="step" id="step-details" hidden novalidate>
+          <p class="step-label">Where should I send the details?</p>
+          <p class="chosen chosen-small" id="details-date"></p>
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" maxlength="80" required>
+          </div>
+          <div class="field">
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="120" required>
+            <p class="hint">You'll get a short Google Form and the session details here.</p>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="website">Leave this empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="error" id="details-error" role="alert"></p>
+          <div class="actions">
+            <button class="btn btn-primary" id="book-btn" type="submit">Book my seat</button>
+            <button class="btn btn-quiet" id="details-back" type="button">Change date</button>
+          </div>
+        </form>
+
+        <!-- Step 4: done -->
+        <div class="step" id="step-done" hidden>
+          <p class="step-label">You're booked</p>
+          <p class="chosen" id="done-date"></p>
+          <p class="done-text">
+            Check <strong id="done-email"></strong> for a short Google Form and the session details.
+            If you don't see it in a few minutes, look in your spam folder.
+          </p>
+        </div>
+      </section>
+
+      <aside class="side">
+        <h2>What we'll cover</h2>
+        <ul class="cover">
+          <li>Which free AI tools are worth using (ChatGPT, Gemini, Claude, Copilot) and what each is good at</li>
+          <li>How to write prompts that get useful answers instead of generic ones</li>
+          <li>Using AI for your own work: studies, writing, job applications or a small business</li>
+          <li>What AI gets wrong, and how to check its answers</li>
+        </ul>
+
+        <h2>How booking works</h2>
+        <ol class="how">
+          <li>Pick a free date on the calendar.</li>
+          <li>Confirm the date.</li>
+          <li>Leave your name and email to hold the seat.</li>
+          <li>You get a short Google Form and the session details by email.</li>
+        </ol>
+        <p class="fine">Seats go to whoever books first. One session per person at a time.</p>
+      </aside>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
