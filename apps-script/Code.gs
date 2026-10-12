@@ -19,7 +19,7 @@ const CONFIG = {
   SESSION_TIME: '7:00 PM IST',
   SESSION_LENGTH: '60 minutes',
   SESSION_PLACE: 'Online on Google Meet. You will get the meeting link the day before.',
-  FORM_URL: 'https://forms.gle/REPLACE_WITH_YOUR_FORM',
+  FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSclXlfJ8RgKCSM3RF6tkEuP0XL2RieM68qVMLVT7cmlFzcOvQ/viewform',
   NOTIFY_OWNER: true,              // email you each time someone books
 };
 

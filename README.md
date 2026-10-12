@@ -51,5 +51,5 @@ Session time, length and topics are written in `index.html` (the facts row, the 
 
 ## Publishing
 
-Static files, no build step. Host on GitHub Pages the same way as `tvastra/`
-(a `git subtree split` of this folder pushed to its own repo).
+Static files, no build step. Host on GitHub Pages from its own repo
+(a `git subtree split` of this folder only).
