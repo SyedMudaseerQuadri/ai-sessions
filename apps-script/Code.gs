@@ -16,7 +16,7 @@ const CONFIG = {
   MONTHS_AHEAD: 3,                 // this month + the next 2
   WEEKDAYS: [0, 1, 2, 3, 4, 5, 6], // bookable days, 0 = Sunday ... 6 = Saturday
   HOST_NAME: 'Mudaseer',
-  SESSION_TIME: '7:00 PM IST',
+  SESSION_TIME: "We'll agree on a time through the Google Form below.",
   SESSION_LENGTH: '60 minutes',
   SESSION_PLACE: 'Online on Google Meet. You will get the meeting link the day before.',
   FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSclXlfJ8RgKCSM3RF6tkEuP0XL2RieM68qVMLVT7cmlFzcOvQ/viewform',
