@@ -1,8 +1,9 @@
 /**
  * Free AI Sessions: booking backend.
  *
- * Paste this whole file into a Google Apps Script project attached to a
- * Google Sheet (Extensions > Apps Script), then deploy it as a web app.
+ * Paste this whole file into any Google Apps Script project, run `setup`
+ * once, then deploy it as a web app. If the project is not attached to a
+ * Google Sheet, `setup` creates one called "AI session bookings" in your Drive.
  * Setup steps are in ../README.md.
  *
  * The sheet "Bookings" is the record: one row per booking.
@@ -104,8 +105,20 @@ function activeRows_() {
     .filter(r => r.date);
 }
 
+/** The Sheet this script is attached to, or one it created for itself on first run. */
+function ss_() {
+  const active = SpreadsheetApp.getActiveSpreadsheet();
+  if (active) return active;
+  const props = PropertiesService.getScriptProperties();
+  const id = props.getProperty('SHEET_ID');
+  if (id) return SpreadsheetApp.openById(id);
+  const created = SpreadsheetApp.create('AI session bookings');
+  props.setProperty('SHEET_ID', created.getId());
+  return created;
+}
+
 function sheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = ss_();
   let sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(CONFIG.SHEET_NAME);
@@ -144,7 +157,7 @@ function sendEmails_(date, name, email) {
     MailApp.sendEmail({
       to: Session.getEffectiveUser().getEmail(),
       subject: 'New AI session booking: ' + nice,
-      body: name + ' <' + email + '> booked ' + nice + '.\n\nSheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl(),
+      body: name + ' <' + email + '> booked ' + nice + '.\n\nSheet: ' + ss_().getUrl(),
     });
   }
 }
@@ -170,5 +183,5 @@ function json_(obj) {
 /** Run once from the editor to create the sheet and approve Gmail + Sheets access. */
 function setup() {
   sheet_();
-  console.log('Ready. Bookings sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl());
+  console.log('Ready. Bookings sheet: ' + ss_().getUrl());
 }

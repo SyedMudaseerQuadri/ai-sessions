@@ -1,6 +1,6 @@
 // Free AI Sessions: booking calendar.
 // Paste your Apps Script web app URL here (see README). Until then the page runs in demo mode.
-const SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_ksAdgdEmIO_Uv-BvWqkM9PUeKnMle6d4Sd7wKXHd0f-7J62otiY51yUVEkdvcJqg/exec';
 
 const DEMO = !/^https:\/\/script\.google\.com\//.test(SCRIPT_URL);
 const DEMO_KEY = 'ai-sessions-demo-bookings';
